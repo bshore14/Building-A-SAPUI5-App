@@ -1,0 +1,160 @@
+<!-- this is a comment.  In the next tag, the xmlns tags define
+    namespaces, the name after of the equality signs being the
+    name of the namespace.  In the code below, we can use this name instead of the full path -->
+<mvc:View controllerName="content.SalesOrders"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:table="sap.ui.table"
+    xmlns:l="sap.ui.commons.layout"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+    
+
+    
+    <!-- This is the text that we want to show -->
+    <Label text="SalesOrders page" />
+    
+    <html:p/>
+
+<!-- here we have the defintion of the table.
+    Next to different settings for the appearance
+    and behvaior of the table, we bind the endpoint
+    /Sales of our data source to our rows -->
+<table:Table
+    id="salesOrdersTable"
+    visibleRowCount="10"
+    selectionMode="Single"
+    navigationMode="Paginator"
+    editable="false"
+    rows="{/Sales}"
+    rowSelectionChange="updateDetails">
+    
+    <!-- this defines one column in the table. The property
+        "sortProperty" defines the column of the data source on
+        which the column will sort -->
+    <table:Column sortProperty="CUSTOMER_NAME">
+        <!-- the label is shown in the header of the table -->
+        <table:label>
+            <Label text="Customer" design="Bold"/>
+        </table:label>
+        <!-- for each column, a template is required which
+            defines how the data is visualized -->
+        <table:template>
+            <!-- this label defines the actual content (aka the
+                rows) that are shown in the table. here, we beind the
+                column CUSTOMER_NAME of the data source
+                to this table column -->
+            <Label text="{CUSTOMER_NAME}"/>
+        </table:template>
+    </table:Column>
+    
+    <table:Column sortProperty="PRODUCT">
+        <table:label>
+            <Label text="Product" design="Bold"/>
+        </table:label>
+        <table:template>
+            <Label text="{PRODUCT}"/>
+        </table:template>
+    </table:Column>
+    
+    <table:Column sortProperty="SALES_QUANTITY">
+        <Label text="Sales Quantity" design="Bold"/>
+        <table:template>
+            <Label text="{SALES_QUANTITY}"/>
+        </table:template>
+    </table:Column>
+    
+    <table:Column sortProperty="REVENUE">
+        <table:label>
+            <Label text="Revenue" design="Bold"/>
+        </table:label>
+        <table:template>
+            <Label text="{REVENUE}"/>
+        </table:template>
+    </table:Column>
+  
+</table:Table>
+
+<html:p/>
+
+<Panel
+    expandable="true"
+    expanded="true"
+    width="500px">
+    <headerToolbar>
+        <!-- in this case, we use a simple title in the
+            toolbar, but you could add images or buttons
+            as well -->
+        <Toolbar height="3rem">
+            <Title text="Contact Data"/>
+            <ToolbarSpacer />
+        </Toolbar>
+    </headerToolbar>
+        
+    <html:p/>
+    
+    <content>
+        <l:MatrixLayout
+            layoutFixed="True"
+            width="450px"
+            columns="2"
+            widths="{'100px','300px'}">
+            <l:MatrixLayoutRow>
+                <l:MatrixLayoutCell>
+                    <Label text="Name" design="Bold"/>
+                </l:MatrixLayoutCell>
+                <l:MatrixLayoutCell>
+                    <!-- as cells, we could use Labels as well
+                        but disabled Input fields visualize better
+                        that these values can change -->
+                    <Input 
+                        id="customerName"
+                        design="Italic"
+                        width="95%"
+                        enabled="False"/>
+                </l:MatrixLayoutCell>
+            </l:MatrixLayoutRow>
+            
+            <l:MatrixLayoutRow>
+                <l:MatrixLayoutCell>
+                    <Label text="City" design="Bold"/>
+                </l:MatrixLayoutCell>
+                <l:MatrixLayoutCell>
+                    <Input 
+                        id="city"
+                        design="Italic"
+                        width="95%"
+                        enabled="False"/>
+                </l:MatrixLayoutCell>
+            </l:MatrixLayoutRow>
+            
+            <l:MatrixLayoutRow>
+                <l:MatrixLayoutCell>
+                    <Label text="Country" design="Bold"/>
+                </l:MatrixLayoutCell>
+                <l:MatrixLayoutCell>
+                    <Input 
+                        id="country"
+                        design="Italic"
+                        width="95%"
+                        enabled="False"/>
+                </l:MatrixLayoutCell>
+            </l:MatrixLayoutRow>
+            
+            <l:MatrixLayoutRow>
+                <l:MatrixLayoutCell>
+                    <Label text="Sales Org." design="Bold"/>
+                </l:MatrixLayoutCell>
+                <l:MatrixLayoutCell>
+                    <Input
+                        id="salesOrg"
+                        design="Italic"
+                        width="95%"
+                        enabled="False"/>
+                </l:MatrixLayoutCell>
+            </l:MatrixLayoutRow>
+            
+            </l:MatrixLayout>
+        </content>
+    </Panel>
+
+</mvc:View>
