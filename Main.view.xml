@@ -1,0 +1,35 @@
+<!-- this is a comment. in the next tag, the xmlns tags define namespaces, the name after of the equality
+    signs being the name of the namespace.  In the code below, we can use this name instead of the full path -->
+
+<mvc:View controllerName="content.Main"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:ux3="sap.ui.ux3">
+    
+        <!-- view content goes here -->
+        <ux3:Shell id="shell"
+            appIcon="/sapucc/gbi/files/dev/logo.png"
+            appTitle="UI5 App 915"
+            showLogoutButton="true"
+            showSearchTool="false"
+            showInspectorTool="false"
+            showFeederTool="false"
+            worksetItemSelected="itemSelected">
+            
+            <!-- this adds our username to the header of the shell-->
+            <ux3:headerItems>
+                <Label text="GBI_915" tooltip="Username"/>
+            </ux3:headerItems>
+            
+            <!-- this set of items defines what we see as
+                navigation items in our application -->
+            <ux3:worksetItems>
+                <!-- each navigation item has a key so we can trigger
+                    it and a text that is shown -->
+                <ux3:NavigationItem key="overview" text="Overview"/>
+                <ux3:NavigationItem key="salesOrders" text="Sales Orders"/>
+            </ux3:worksetItems>
+            
+        </ux3:Shell>
+        
+</mvc:View>
